@@ -263,5 +263,37 @@ Array.prototype.last  =function(){
     return -1
 }
 }
-const arr=[1,2,3]
+const arr=[]
 console.log(arr.last())
+
+
+// Exercise 10: Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
+
+// You must not use any built-in exponent function or operator.
+
+// // For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
+// Example 1:
+
+// Input: x = 4
+// Output: 2
+// Explanation: The square root of 4 is 2, so we return 2.
+// Example 2:
+
+// Input: x = 8
+// Output: 2
+// Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
+
+function squareRoot(x){
+  if(x<2){
+    return  x
+}
+for(let i=2;i<=x;i++){
+    if(i*i===x){
+        return i
+    }else if((i*i)>x){
+        return i-1
+    }
+}
+}
+console.log(squareRoot(4))
+console.log(squareRoot(8))
