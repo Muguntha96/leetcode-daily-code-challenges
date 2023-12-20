@@ -585,3 +585,52 @@ function smallerNumbersThanCurrent(nums){
 console.log(smallerNumbersThanCurrent([8,1,2,2,3]))
 console.log(smallerNumbersThanCurrent([6,5,4,8]))
 console.log(smallerNumbersThanCurrent([7,7,7,7]))
+
+// Exercise:18 Given a 0-indexed integer array nums, find a 0-indexed integer array answer where:
+
+// answer.length == nums.length.
+// answer[i] = |leftSum[i] - rightSum[i]|.
+// Where:
+
+// leftSum[i] is the sum of elements to the left of the index i in the array nums. If there is no such element, leftSum[i] = 0.
+// rightSum[i] is the sum of elements to the right of the index i in the array nums. If there is no such element, rightSum[i] = 0.
+// Return the array answer.
+
+// Example 1:
+
+// Input: nums = [10,4,8,3]
+// Output: [15,1,11,22]
+// Explanation: The array leftSum is [0,10,14,22] and the array rightSum is [15,11,3,0].
+// The array answer is [|0 - 15|,|10 - 11|,|14 - 3|,|22 - 0|] = [15,1,11,22].
+// Example 2:
+
+// Input: nums = [1]
+// Output: [0]
+// Explanation: The array leftSum is [0] and the array rightSum is [0].
+// The array answer is [|0 - 0|] = [0].
+function leftRightDifference(nums){
+let leftArr=[]
+let rightArr=[]
+let answer=[]
+leftArr[0]=0
+let leftSum=0
+let rightSum=0
+for(let i=0;i<nums.length-1;i++){
+  leftSum =leftSum+nums[i]
+  leftArr.push(leftSum)
+}
+for(let j=0;j<nums.length;j++){
+  for(k=j+1;k<nums.length;k++){
+    rightSum = rightSum +nums[k]
+  }
+    rightArr.push(rightSum)
+    rightSum=0
+  }
+for(let p=0;p<nums.length;p++){
+  answer[p]=Math.abs(leftArr[p]-rightArr[p])
+}
+console.log(answer)
+}
+
+leftRightDifference([10,4,8,3])
+leftRightDifference([1])
