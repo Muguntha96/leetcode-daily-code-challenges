@@ -754,10 +754,9 @@ function divisorGame(n){
 }
 console.log(divisorGame(2))
 console.log(divisorGame(3))
+
+
 // Example :22 Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
-
- 
-
 // Example 1:
 
 // Input: nums = [3,0,1]
@@ -773,4 +772,54 @@ console.log(divisorGame(3))
 // Input: nums = [9,6,4,2,3,5,7,0,1]
 // Output: 8
 // Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
- 
+function missingNumber(nums){
+let n
+for(let i=0;i<=nums.length;i++){
+if(nums.includes(i)===false){
+  n=i
+}
+}
+return n  
+}
+
+
+console.log(missingNumber([0,1]))
+console.log(missingNumber([3,0,1]))
+console.log(missingNumber([9,6,4,2,3,5,7,0,1]))
+
+// Exercise:23 A sentence is a list of words that are separated by a single space with no leading or trailing spaces. Each of the words consists of only uppercase and lowercase English letters (no punctuation).
+
+// For example, "Hello World", "HELLO", and "hello world hello world" are all sentences.
+// You are given a sentence s​​​​​​ and an integer k​​​​​​. You want to truncate s​​​​​​ such that it contains only the first k​​​​​​ words. Return s​​​​​​ after truncating it.
+// Example 1:
+
+// Input: s = "Hello how are you Contestant", k = 4
+// Output: "Hello how are you"
+// Explanation:
+// The words in s are ["Hello", "how" "are", "you", "Contestant"].
+// The first 4 words are ["Hello", "how", "are", "you"].
+// Hence, you should return "Hello how are you".
+// Example 2:
+
+// Input: s = "What is the solution to this problem", k = 4
+// Output: "What is the solution"
+// Explanation:
+// The words in s are ["What", "is" "the", "solution", "to", "this", "problem"].
+// The first 4 words are ["What", "is", "the", "solution"].
+// Hence, you should return "What is the solution".
+// Example 3:
+
+// Input: s = "chopper is not a tanuki", k = 5
+// Output: "chopper is not a tanuki"
+
+function truncateSentence(s,k){
+let sentenceArr=s.split(" ")
+let outputArr=[]
+for(let i=0;i<k;i++){
+outputArr[i]=sentenceArr[i]
+}
+return outputArr.join(" ")
+}
+console.log(truncateSentence("Hello how are you Contestant",4))
+console.log(truncateSentence("What is the solution to this problem",4))
+console.log(truncateSentence("chopper is not a tanuki",5))
