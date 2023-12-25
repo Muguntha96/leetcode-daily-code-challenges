@@ -945,3 +945,71 @@ function countKDifference(nums,k){
 console.log(countKDifference([1,2,2,1],1))
 console.log(countKDifference([1,3],1))
 console.log(countKDifference([3,2,1,5,4],2))
+
+// Exercise: 27 Given an array of positive integers arr, return the sum of all possible odd-length subarrays of arr.
+
+// A subarray is a contiguous subsequence of the array.
+
+ 
+
+// Example 1:
+
+// Input: arr = [1,4,2,5,3]
+// Output: 58
+// Explanation: The odd-length subarrays of arr and their sums are:
+// [1] = 1
+// [4] = 4
+// [2] = 2
+// [5] = 5
+// [3] = 3
+// [1,4,2] = 7
+// [4,2,5] = 11
+// [2,5,3] = 10
+// [1,4,2,5,3] = 15
+// If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
+// Example 2:
+
+// Input: arr = [1,2]
+// Output: 3
+// Explanation: There are only 2 subarrays of odd length, [1] and [2]. Their sum is 3.
+// Example 3:
+
+// Input: arr = [10,11,12]
+// Output: 66
+function sumOddLengthSubarrays(arr){
+  let add=0
+  for(let i =0;i<arr.length;i++){
+    for(let j=i;j<arr.length;j+=2){
+        for(k=i;k<=j;k++){
+          add+=arr[k]
+          }
+    }
+    
+  }
+  return add
+  }
+
+console.log(sumOddLengthSubarrays([1,4,2,5,3]))
+console.log(sumOddLengthSubarrays([1,2]))
+console.log(sumOddLengthSubarrays([10,11,12]))
+// Exercise:28 The product difference between two pairs (a, b) and (c, d) is defined as (a * b) - (c * d).
+
+// For example, the product difference between (5, 6) and (2, 7) is (5 * 6) - (2 * 7) = 16.
+// Given an integer array nums, choose four distinct indices w, x, y, and z such that the product difference between pairs (nums[w], nums[x]) and (nums[y], nums[z]) is maximized.
+// Return the maximum such product difference.
+// Example 1:
+// Input: nums = [5,6,2,7,4]
+// Output: 34
+// Explanation: We can choose indices 1 and 3 for the first pair (6, 7) and indices 2 and 4 for the second pair (2, 4).
+// The product difference is (6 * 7) - (2 * 4) = 34.
+// Example 2:
+// Input: nums = [4,2,5,9,7,4,8]
+// Output: 64
+// Explanation: We can choose indices 3 and 6 for the first pair (9, 8) and indices 1 and 5 for the second pair (2, 4).
+// The product difference is (9 * 8) - (2 * 4) = 64.
+function maxProductDifference(nums){
+let sortArr=nums.sort((a,b)=>a-b)
+return ((nums[nums.length-1]*nums[nums.length-2])-(nums[0]*nums[1])) 
+}
+console.log(maxProductDifference([5,6,2,7,4]))
+console.log(maxProductDifference([4,2,5,9,7,4,8]))
