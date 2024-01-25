@@ -1333,3 +1333,45 @@ function maxProduct(nums){
 console.log(maxProduct([3,4,5,2]))
 console.log(maxProduct([1,5,4,5]))
 console.log(maxProduct([3,7]))
+
+// Exercise 36:You are given an integer array nums where the largest integer is unique.
+
+// Determine whether the largest element in the array is at least twice as much as every other number in the array. If it is, return the index of the largest element, or return -1 otherwise.
+
+ 
+
+// Example 1:
+
+// Input: nums = [3,6,1,0]
+// Output: 1
+// Explanation: 6 is the largest integer.
+// For every other number in the array x, 6 is at least twice as big as x.
+// The index of value 6 is 1, so we return 1.
+// Example 2:
+
+// Input: nums = [1,2,3,4]
+// Output: -1
+// Explanation: 4 is less than twice the value of 3, so we return -1.
+
+function dominanIndex(nums){
+  let max=0
+  let idx=0
+  for(let i=0;i<nums.length;i++){
+    if(nums[i]>max){
+      max=nums[i]
+      idx=i
+    }
+  }
+  for(let j=0;j<nums.length;j++){
+    if(max>=(nums[j]+[nums[j]])){
+      return idx
+    }
+  }
+  return -1
+  }
+
+
+
+console.log(dominanIndex([3,6,1,0]))
+console.log(dominanIndex([1,2,3,4]))
+console.log(dominanIndex([0,0,0,1]))
