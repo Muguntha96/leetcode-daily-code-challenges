@@ -1458,3 +1458,64 @@ console.log(isPalindrome("A man, a plan, a canal: Panama"))
 console.log(isPalindrome("race a car"))
 console.log(isPalindrome(" "))
 // isPalindrome("race a car")
+
+// Exercise:39 Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the range [1, n] that do not appear in nums.
+
+ 
+
+// Example 1:
+
+// Input: nums = [4,3,2,7,8,2,3,1]
+// Output: [5,6]
+// Example 2:
+
+// Input: nums = [1,1]
+// Output: [2]
+ 
+
+// Constraints:
+
+// n == nums.length
+// 1 <= n <= 105
+// 1 <= nums[i] <= n
+ 
+
+// Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+// function findDisappearedNumbers(nums){
+//   let newArr=[]
+//   for(let i=0;i<nums.length;i++){
+//     if((i+1)!=nums[i]){
+//       newArr.push(i+1)
+//     }
+//   }
+//   return newArr
+// }
+// console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+// Exercise 39 You have n coins and you want to build a staircase with these coins. The staircase consists of k rows where the ith row has exactly i coins. The last row of the staircase may be incomplete.
+
+// Given the integer n, return the number of complete rows of the staircase you will build.
+// Input: n = 5
+// Output: 2
+// Explanation: Because the 3rd row is incomplete, we return 2.
+// Input: n = 8
+// Output: 3
+// Explanation: Because the 4th row is incomplete, we return 3.
+ 
+
+// Constraints:
+
+// 1 <= n <= 231 - 1
+function arrangeCoins(n){
+  let sum =0
+  for (let i=0;i<=n;i++){
+    sum=sum+i
+    if(sum===n){
+      return i
+    }
+    if(sum>n){
+      return i-1
+    }
+  }
+}
+console.log(arrangeCoins(5))
+console.log(arrangeCoins(8))
