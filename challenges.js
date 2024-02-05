@@ -1753,3 +1753,35 @@ for(let i=0;i<s.length;i++){
 console.log(firstUnique("leetcode"))
 console.log(firstUnique("loveleetcode"))
 console.log(firstUnique("aabb"))
+
+// Exercise :47 Given an array nums of size n, return the majority element.
+
+// The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+ 
+
+// Example 1:
+
+// Input: nums = [3,2,3]
+// Output: 3
+// Example 2:
+
+// Input: nums = [2,2,1,1,1,2,2]
+// Output: 2
+function majorityElement(nums){
+  const majorityObj={}
+  let majority=0
+  let majorityKey=""
+  for (let num of nums){
+    majorityObj[num] =majorityObj[num] ? majorityObj[num]+1 :1
+  }
+  for (let ele in majorityObj){
+    if(majorityObj[ele] >majority){
+      majority=majorityObj[ele]
+      majorityKey=ele
+    }
+  }
+  return majorityKey
+}
+console.log(majorityElement([3,2,3]))
+console.log(majorityElement([2,2,1,1,1,2,2]))
