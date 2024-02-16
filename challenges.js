@@ -2211,3 +2211,35 @@ function findNonMinOrMax(nums){
 
 console.log(findNonMinOrMax([3,2,1,4]))
 console.log(findNonMinOrMax([1,2]))
+
+// Exercise:57 Given a string s, return the string after replacing every uppercase letter with the same lowercase letter.
+
+ 
+
+// Example 1:
+
+// Input: s = "Hello"
+// Output: "hello"
+// Example 2:
+
+// Input: s = "here"
+// Output: "here"
+// Example 3:
+
+// Input: s = "LOVELY"
+// Output: "lovely"
+
+function toLowerCase(s){
+  let toLowerCaseStr=""
+  for(let i=0;i<s.length;i++){
+    let code=s.charCodeAt(i)
+    if(code>64 && code <97){
+      code=code+32
+    }
+    let lowerCase=String.fromCharCode(code)
+    toLowerCaseStr=toLowerCaseStr.concat(lowerCase)
+  }
+  return toLowerCaseStr
+}
+
+console.log(toLowerCase("Hello"))
