@@ -2243,3 +2243,64 @@ function toLowerCase(s){
 }
 
 console.log(toLowerCase("Hello"))
+
+// Exercise:58A pangram is a sentence where every letter of the English alphabet appears at least once.
+
+// Given a string sentence containing only lowercase English letters, return true if sentence is a pangram, or false otherwise.
+
+ 
+
+// Example 1:
+
+// Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+// Output: true
+// Explanation: sentence contains at least one of every letter of the English alphabet.
+// Example 2:
+
+// Input: sentence = "leetcode"
+// Output: false
+
+function checkIfPangram(sentence){
+  let set=new Set()
+  for(let i=0;i<sentence.length;i++){
+    set.add(sentence[i])
+  }
+  if(set.size==26){
+    return true
+  }else{
+  return false
+  }
+}
+console.log(checkIfPangram("thequickbrownfoxjumpsoverthelazydog"))
+console.log(checkIfPangram("leetcode"))
+
+
+// Exercise 69 :Your laptop keyboard is faulty, and whenever you type a character 'i' on it, it reverses the string that you have written. Typing other characters works as expected.
+
+// You are given a 0-indexed string s, and you type each character of s using your faulty keyboard.
+
+// Return the final string that will be present on your laptop screen.
+
+function solution(s){
+  // get the parameter s as input (0 indexed String)
+  //  create an empty string str
+  // iterate each character in s string
+  //check the charater is (i) or not
+  //if the charater is not i means store it in str string
+  // else if the character is (i) reverse the str string
+let str=[]
+for(let i = 0;i<s.length;i++){
+  if(s[i]==='i'){
+    str.reverse()
+    continue
+  }
+  else{
+    str.push(s[i])
+  }
+}
+str.join("")
+
+}
+
+console.log(solution("pointer"))
+console.log(solution("coincidence"))
