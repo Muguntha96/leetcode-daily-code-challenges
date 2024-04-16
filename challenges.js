@@ -2298,9 +2298,37 @@ for(let i = 0;i<s.length;i++){
     str.push(s[i])
   }
 }
-str.join("")
+return str.join("")
 
 }
 
 console.log(solution("pointer"))
 console.log(solution("coincidence"))
+
+
+// Exercise : 70 Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+// Example 1:
+
+// Input: s = "Let's take LeetCode contest"
+// Output: "s'teL ekat edoCteeL tsetnoc"
+// Example 2:
+
+// Input: s = "Mr Ding"
+// Output: "rM gniD"
+function reverseWords(s){
+  let newArr=[]
+  let temp=""
+    let sArr=s.split(" ")
+  for(let i=0;i<sArr.length;i++){
+    for(let j=sArr[i].length-1;j>=0;j--){
+      temp +=sArr[i][j]
+    }
+    newArr.push(temp)
+    temp=""
+  }
+
+  return newArr.join(" ")
+}
+
+console.log(reverseWords("Let's take LeetCode contest"))
+console.log(reverseWords('Mr Ding'))
