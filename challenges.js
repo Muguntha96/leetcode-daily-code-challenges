@@ -2599,22 +2599,19 @@ sortSentence("Myself2 Me1 I4 and3")
 
 function minimumAverage(nums){
 let avgArr=[]
+nums.sort((a,b)=>a-b)
 let n=nums.length
-for(let i=0;i<n-1;i++){
-  if(nums[i]>nums[i+1]){
-    let temp=nums[i]
-    nums[i]=nums[i+1]
-    nums[i+1]=temp
 
-  }
-}
-console.log(nums)
 for(let j=0;j<n/2;j++){
-  let output=nums[j]+nums[n-1]/2
+  let output=(nums[j]+nums[n-1-j])/2
   avgArr[j]=output
 }
-console.log(avgArr)
+avgArr.sort((a,b)=>a-b)
+return avgArr[0]
+
+
 
 }
 
 minimumAverage([7,8,3,4,15,13,4,1])
+minimumAverage([1,2,3,7,8,9])
