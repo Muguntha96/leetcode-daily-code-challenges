@@ -2615,3 +2615,52 @@ return avgArr[0]
 
 minimumAverage([7,8,3,4,15,13,4,1])
 minimumAverage([1,2,3,7,8,9])
+
+
+// Exercise:77 905. Sort Array By Parity
+// Easy
+// Topics
+// Companies
+// Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
+
+// Return any array that satisfies this condition.
+
+ 
+
+// Example 1:
+
+// Input: nums = [3,1,2,4]
+// Output: [2,4,3,1]
+// Explanation: The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+// Example 2:
+
+// Input: nums = [0]
+// Output: [0]
+
+function sortArrayByParity(nums){
+  let numsArr1=[]
+  let numsArr2=[]
+  let n=nums.length
+for(let i=0;i<n-1;i++){
+  for(let j=0;j<n-i-1;j++){
+    if(nums[j]>nums[j+1]){
+      let temp=nums[j]
+      nums[j]=nums[j+1]
+      nums[j+1]=temp
+      
+    }
+  }
+}
+for(let k=0;k<n;k++){
+  if(nums[k]%2===0){
+    numsArr1.push(nums[k])
+  }else{
+    numsArr2.push(nums[k])
+  }
+}
+return [...numsArr1,...numsArr2]
+
+}
+
+
+console.log(sortArrayByParity([3,1,2,4]))
