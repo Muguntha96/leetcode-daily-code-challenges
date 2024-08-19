@@ -3183,3 +3183,47 @@ return sArr.join(" ")
 }
 
 console.log(reverseWords("the sky is blue"))
+
+// Exercise:87 :345. Reverse Vowels of a String
+// Easy
+// Topics
+// Companies
+// Given a string s, reverse only all the vowels in the string and return it.
+
+// The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+ 
+
+// Example 1:
+
+// Input: s = "hello"
+// Output: "holle"
+// Example 2:
+
+// Input: s = "leetcode"
+// Output: "leotcede"
+
+function reverseVowels(s){
+  let sArr=s.split("")
+  let start=0
+  let end=sArr.length-1
+  let vowels=['a','e','i','o','u']
+
+  while(start<end){
+    if(vowels.includes(sArr[start].toLowerCase()) && vowels.includes(sArr[end].toLowerCase())){
+      let temp=sArr[start]
+      sArr[start]=sArr[end]
+      sArr[end]=temp
+      start++
+      end--
+    }
+    if(!vowels.includes(sArr[start].toLowerCase()))start++
+    if(!vowels.includes(sArr[end].toLowerCase()))end--
+  }
+  return sArr.join("")
+
+  
+}
+
+
+console.log(reverseVowels("leetcode"))
