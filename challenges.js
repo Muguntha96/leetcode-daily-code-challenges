@@ -3394,3 +3394,102 @@ function kidsWithCandies(candies, extraCandies){
 
 console.log(kidsWithCandies([4,2,1,1,2],1))
 console.log(kidsWithCandies([2,3,5,1,3],3))
+
+// Exercise:91 1668. Maximum Repeating Substring
+// Easy
+// Topics
+// Companies
+// Hint
+// For a string sequence, a string word is k-repeating if word concatenated k times is a substring of sequence. The word's maximum k-repeating value is the highest value k where word is k-repeating in sequence. If word is not a substring of sequence, word's maximum k-repeating value is 0.
+
+// Given strings sequence and word, return the maximum k-repeating value of word in sequence.
+
+ 
+
+// Example 1:
+
+// Input: sequence = "ababc", word = "ab"
+// Output: 2
+// Explanation: "abab" is a substring in "ababc".
+// Example 2:
+
+// Input: sequence = "ababc", word = "ba"
+// Output: 1
+// Explanation: "ba" is a substring in "ababc". "baba" is not a substring in "ababc".
+// Example 3:
+
+// Input: sequence = "ababc", word = "ac"
+// Output: 0
+// Explanation: "ac" is not a substring in "ababc". 
+ 
+
+// Constraints:
+
+// 1 <= sequence.length <= 100
+// 1 <= word.length <= 100
+// sequence and word contains only lowercase English letters.
+
+function maxRepeating(sequence, word){
+  let count=0
+  let repeat=word
+  while(true){
+    if(sequence.includes(repeat)){
+      count++
+      repeat +=word
+    }
+    else{
+      break
+    }
+  }
+
+  return count
+}
+
+console.log(maxRepeating("ababc","ab"))
+console.log(maxRepeating("ababc","ba"))
+console.log(maxRepeating("ababc","ac"))
+
+// Exercise:92 605. Can Place Flowers
+// Easy
+// Topics
+// Companies
+// You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
+
+// Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+
+ 
+
+// Example 1:
+
+// Input: flowerbed = [1,0,0,0,1], n = 1
+// Output: true
+// Example 2:
+
+// Input: flowerbed = [1,0,0,0,1], n = 2
+// Output: false
+ 
+
+// Constraints:
+
+// 1 <= flowerbed.length <= 2 * 104
+// flowerbed[i] is 0 or 1.
+// There are no two adjacent flowers in flowerbed.
+// 0 <= n <= flowerbed.length
+
+function canPlaceFlowers(flowerbed, n){
+
+  for(let i=0;i<flowerbed.length;i++){
+    if((flowerbed[i]==0) && (i==0 || flowerbed[i-1]==0) && (i==flowerbed.length-1 || flowerbed[i+1]==0)){
+      flowerbed[i]=1
+      n--
+      i++
+    }
+
+  }
+
+  return n<=0
+}
+
+// console.log(canPlaceFlowers([1,0,0,0,1],1))
+// console.log(canPlaceFlowers([1,0,0,0,1],2))
+console.log(canPlaceFlowers([1,0,0,0,0,0,1],2))
