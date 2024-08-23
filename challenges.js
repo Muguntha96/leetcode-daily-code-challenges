@@ -3757,3 +3757,72 @@ function isSubsequence(s,t){
 
 console.log(isSubsequence( "abc","ahbgdc"))
 console.log(isSubsequence("axc","ahbgdc"))
+
+// Exercise:98:592. Fraction Addition and Subtraction
+// Medium
+// Topics
+// Companies
+// Given a string expression representing an expression of fraction addition and subtraction, return the calculation result in string format.
+
+// The final result should be an irreducible fraction. If your final result is an integer, change it to the format of a fraction that has a denominator 1. So in this case, 2 should be converted to 2/1.
+
+ 
+
+// Example 1:
+
+// Input: expression = "-1/2+1/2"
+// Output: "0/1"
+// Example 2:
+
+// Input: expression = "-1/2+1/2+1/3"
+// Output: "1/3"
+// Example 3:
+
+// Input: expression = "1/3-1/2"
+// Output: "-1/6"
+ 
+
+// Constraints:
+
+// The input string only contains '0' to '9', '/', '+' and '-'. So does the output.
+// Each fraction (input and output) has the format ±numerator/denominator. If the first input fraction or the output is positive, then '+' will be omitted.
+// The input only contains valid irreducible fractions, where the numerator and denominator of each fraction will always be in the range [1, 10]. If the denominator is 1, it means this fraction is actually an integer in a fraction format defined above.
+// The number of given fractions will be in the range [1, 10].
+// The numerator and denominator of the final result are guaranteed to be valid and in the range of 32-bit int.
+
+function fractionAddition(expression){
+  // 1.parse the fraction
+  //2.calculate the LCD for (common denominator)
+  //
+  let fractions=expression.match(/[+-]?\d+\/\d+/g)
+
+  let numeSum=0
+  let denom=1
+
+  //here to find the denominator
+  for(let fraction of fractions){
+    let [numerator,denominator]=fraction.split('/').map(Number)
+  denom=lcm(denom,denominator)
+  }
+
+//here to find the numerator
+  for(let fraction of fractions){
+    let [numerator,denominator]=fraction.split('/').map(Number)
+    numeSum += numerator*(denom/denominator)
+  }
+
+  let result=gcd(Math.abs(numeSum), denom)
+  numeSum /=result
+  denom /=result
+return `${numeSum}/${denom}`
+}
+
+function lcm(a,b){
+  return Math.abs(a*b)/gcd(a,b)
+
+}
+function gcd(a,b){
+  return b===0 ? a : gcd(b,a%b)
+}
+
+console.log(fractionAddition("-1/2+1/2+1/3"))
