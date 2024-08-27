@@ -3826,3 +3826,81 @@ function gcd(a,b){
 }
 
 console.log(fractionAddition("-1/2+1/2+1/3"))
+
+
+
+// Exercise:99590. N-ary Tree Postorder Traversal
+// Easy
+// Topics
+// Companies
+// Given the root of an n-ary tree, return the postorder traversal of its nodes' values.
+
+// Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value (See examples)
+
+ 
+
+// Example 1:
+
+
+// Input: root = [1,null,3,2,4,null,5,6]
+// Output: [5,6,3,2,4,1]
+// Example 2:
+
+
+// Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+// Output: [2,6,14,11,7,3,12,8,4,13,9,10,5,1]
+ 
+
+// Constraints:
+
+// The number of nodes in the tree is in the range [0, 104].
+// 0 <= Node.val <= 104
+// The height of the n-ary tree is less than or equal to 1000.
+class Node {
+  constructor(val, children = []) {
+    this.val = val;
+    this.children = children;
+  }
+}
+
+function buildTree(input) {
+  if (input.length === 0) return null;
+
+  const root = new Node(input[0]);
+  const queue = [root];
+  let index = 2; // Start after the root and the first null
+
+  while (index < input.length) {
+    const parent = queue.shift();
+
+    while (index < input.length && input[index] !== null) {
+      const child = new Node(input[index]);
+      parent.children.push(child);
+      queue.push(child);
+      index++;
+    }
+
+    index++; // Skip the null
+  }
+
+  return root; // Return the root of the tree
+}
+
+function postorder(root) {
+  if (root === null) {
+    return [];
+  }
+  let result = [];
+  
+  function traverse(node) {
+    for (let child of node.children) {
+      traverse(child);
+    }
+    result.push(node.val); // Push the node value after all children have been processed
+  }
+
+  traverse(root);
+  return result;
+}
+
+console.log(postorder([1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]))
