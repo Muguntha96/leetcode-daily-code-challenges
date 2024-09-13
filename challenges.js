@@ -3829,7 +3829,7 @@ console.log(fractionAddition("-1/2+1/2+1/3"))
 
 
 
-// Exercise:99590. N-ary Tree Postorder Traversal
+// Exercise:99 590. N-ary Tree Postorder Traversal
 // Easy
 // Topics
 // Companies
@@ -3890,17 +3890,98 @@ function postorder(root) {
   if (root === null) {
     return [];
   }
+
   let result = [];
-  
+
   function traverse(node) {
+    if (!node || !Array.isArray(node.children)) {
+      return; // Check to ensure node is valid and children is an array
+    }
+
     for (let child of node.children) {
       traverse(child);
     }
+
     result.push(node.val); // Push the node value after all children have been processed
   }
 
   traverse(root);
   return result;
 }
+const input = [1, null, 2, 3, 4, 5, null, null, 6, 7, null, 8, null, 9, 10, null, null, 11, null, 12, null, 13, null, null, 14];
+const root = buildTree(input);
+console.log(postorder(root))
 
-console.log(postorder([1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]))
+
+// Exercise : 100 
+// 2695. Array Wrapper
+// Easy
+// Companies
+// Create a class ArrayWrapper that accepts an array of integers in its constructor. This class should have two features:
+
+// When two instances of this class are added together with the + operator, the resulting value is the sum of all the elements in both arrays.
+// When the String() function is called on the instance, it will return a comma separated string surrounded by brackets. For example, [1,2,3].
+ 
+
+// Example 1:
+
+// Input: nums = [[1,2],[3,4]], operation = "Add"
+// Output: 10
+// Explanation:
+// const obj1 = new ArrayWrapper([1,2]);
+// const obj2 = new ArrayWrapper([3,4]);
+// obj1 + obj2; // 10
+// Example 2:
+
+// Input: nums = [[23,98,42,70]], operation = "String"
+// Output: "[23,98,42,70]"
+// Explanation:
+// const obj = new ArrayWrapper([23,98,42,70]);
+// String(obj); // "[23,98,42,70]"
+// Example 3:
+
+// Input: nums = [[],[]], operation = "Add"
+// Output: 0
+// Explanation:
+// const obj1 = new ArrayWrapper([]);
+// const obj2 = new ArrayWrapper([]);
+// obj1 + obj2; // 0
+ 
+
+// Constraints:
+
+// 0 <= nums.length <= 1000
+// 0 <= nums[i] <= 1000
+// Note: nums is the array passed to the constructor
+
+class ArrayWrapper{
+  constructor(nums){
+    this.nums=nums
+  }
+  valueOf(){
+    let nums=this.nums
+    let sum=0
+    for(let i=0;i<nums.length;i++){
+      for(let j=0;j<nums[i].length;j++){
+        sum=sum+nums[i][j]
+      }
+    }
+    return sum
+  }
+  stringOf(){
+    let str=this.nums
+    s.push(str.toString())
+    
+
+  }
+  
+}
+
+let nums=[[1,2],[3,4]]
+let obj1=new ArrayWrapper(nums)
+let operation="Add"
+if(operation=="Add"){
+  console.log(obj1.valueOf())
+}else if(operation=="String"){
+  console.log(obj1.toString())
+}
