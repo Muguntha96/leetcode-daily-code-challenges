@@ -4092,7 +4092,11 @@ console.log(countConsistentStrings("cad",["cc","acd","b","ba","bac","bad","ac","
 //     1 <= skill[i] <= 1000
 
 function dividePlayers(skill){
+  if(skill.length%2 !=0){
+    return -1
+  }
   skill.sort((a,b)=>a-b)
+
   let n=skill.length
   let target=skill[0]+skill[n-1]
   let sum=0
@@ -4108,5 +4112,151 @@ function dividePlayers(skill){
 
 }
 
-console.log(dividePlayers([1,1,2,3]))
+console.log(dividePlayers([4,2,3,3]))
 console.log(dividePlayers([3,2,5,1,3,4]))
+console.log(dividePlayers([1,3,4]))
+
+/* Exercise:103
+1813. Sentence Similarity III
+Medium
+Topics
+Companies
+Hint
+
+You are given two strings sentence1 and sentence2, each representing a sentence composed of words. A sentence is a list of words that are separated by a single space with no leading or trailing spaces. Each word consists of only uppercase and lowercase English characters.
+
+Two sentences s1 and s2 are considered similar if it is possible to insert an arbitrary sentence (possibly empty) inside one of these sentences such that the two sentences become equal. Note that the inserted sentence must be separated from existing words by spaces.
+
+For example,
+
+    s1 = "Hello Jane" and s2 = "Hello my name is Jane" can be made equal by inserting "my name is" between "Hello" and "Jane" in s1.
+    s1 = "Frog cool" and s2 = "Frogs are cool" are not similar, since although there is a sentence "s are" inserted into s1, it is not separated from "Frog" by a space.
+
+Given two sentences sentence1 and sentence2, return true if sentence1 and sentence2 are similar. Otherwise, return false.
+
+ 
+
+Example 1:
+
+Input: sentence1 = "My name is Haley", sentence2 = "My Haley"
+
+Output: true
+
+Explanation:
+
+sentence2 can be turned to sentence1 by inserting "name is" between "My" and "Haley".
+
+Example 2:
+
+Input: sentence1 = "of", sentence2 = "A lot of words"
+
+Output: false
+
+Explanation:
+
+No single sentence can be inserted inside one of the sentences to make it equal to the other.
+
+Example 3:
+
+Input: sentence1 = "Eating right now", sentence2 = "Eating"
+
+Output: true
+
+Explanation:
+
+sentence2 can be turned to sentence1 by inserting "right now" at the end of the sentence.
+
+ 
+
+Constraints:
+
+    1 <= sentence1.length, sentence2.length <= 100
+    sentence1 and sentence2 consist of lowercase and uppercase English letters and spaces.
+    The words in sentence1 and sentence2 are separated by a single space.
+
+
+
+*/
+
+function areSentencesSimilar(sentence1, sentence2) {
+  let n=sentence1.split(" ")
+  let m=sentence2.split(" ")
+  let startCount=0
+  let endCount=0
+  for(let i=0;i<Math.min(n.length, m.length);i++){
+    if(n[i]===m[i]){
+      startCount++
+    }else{
+      break
+    }
+  }
+  for(let i=0;i<Math.min(n.length, m.length);i++){
+    if(n[n.length-1-i]===m[m.length-1-i]){
+      endCount++
+    }else{
+      break
+    }
+  }
+  if(startCount + endCount >= n.length || startCount + endCount >= m.length){
+    return true
+  }
+  return false
+}
+
+console.log(areSentencesSimilar( "of","A lot of words"))
+console.log(areSentencesSimilar("Eating right now","Eating"))
+console.log(areSentencesSimilar("My name is Haley","My Haley"))
+
+
+/* 
+Exercise:104
+2696. Minimum String Length After Removing Substrings
+Solved
+Easy
+Topics
+Companies
+Hint
+
+You are given a string s consisting only of uppercase English letters.
+
+You can apply some operations to this string where, in one operation, you can remove any occurrence of one of the substrings "AB" or "CD" from s.
+
+Return the minimum possible length of the resulting string that you can obtain.
+
+Note that the string concatenates after removing the substring and could produce new "AB" or "CD" substrings.
+
+ 
+
+Example 1:
+
+Input: s = "ABFCACDB"
+Output: 2
+Explanation: We can do the following operations:
+- Remove the substring "ABFCACDB", so s = "FCACDB".
+- Remove the substring "FCACDB", so s = "FCAB".
+- Remove the substring "FCAB", so s = "FC".
+So the resulting length of the string is 2.
+It can be shown that it is the minimum length that we can obtain.
+
+Example 2:
+
+Input: s = "ACBBD"
+Output: 5
+Explanation: We cannot do any operations on the string so the length remains the same.
+
+
+*/
+
+function minLength(s){
+  while(s.includes('AB') || s.includes('CD')){
+    if(s.includes('AB')){
+        s=s.replace('AB','')
+    }
+    if(s.includes('CD')){
+        s=s.replace('CD','')
+    }
+}
+return s.length
+}
+
+console.log(minLength("ACBBD"))
